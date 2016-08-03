@@ -1,0 +1,25 @@
+{
+    "campusApp": {
+        "block" : {
+            "home": {
+                "title": "Blocks",
+                "createLabel": "Create a new Block",
+                "createOrEditLabel": "Create or edit a Block"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Block ?",
+                "multiplequestion": "Are you sure you want to delete these blocks ?"
+            },
+            "detail": {
+                "title": "Block"
+            },
+            "label":{
+                "all": "All Blocks"
+            },
+            "name": "Name",
+            "type": "Type",
+            "count": "Count",
+            "floors": "Floors"
+        }
+    }
+}

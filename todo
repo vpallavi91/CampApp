@@ -1,0 +1,45 @@
+/*==========================
+|		Authorities
+==========================*/
+
+// server
+
+	/* check if the user is granted to do this action
+		ex: POST /api/person?action=post.delete
+	*/
+	isGarunted = function(req, res, next){
+		if(req.user.roles.indexOf(req.action) == -1)
+			res.send(401);
+		next();
+	}
+
+// client
+
+	// <a ng-click="delete(id)" ng-show="isGarunted('post.delete')" >Delete Post</a>
+
+	function(action){
+		return user.roles.indexOf(action) == -1
+	}
+
+
+/*==========================
+|		Fields
+==========================*/
+
+var FieldSchema = new Schema({
+	name: String,
+	label: String,
+	isVisible: String
+});
+
+
+/*==========================
+|		nodewebkit
+==========================*/
+
+
+/*==========================
+|		ui & ux
+==========================*/
+- flash messages
+- node-webkit border raduis

@@ -1,0 +1,47 @@
+<h2><span translate="campusApp.room.detail.title">Room</span></h2>
+
+<form name="roomFrom" role="form" class="form-horizontal" novalidate ng-submit="create()" show-validation>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" translate="campusApp.block.detail.title">Block</label>
+        <div class="col-md-4">
+            <input type="text" class="form-control" name="name" ng-model="block.name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-4 control-label" translate="campusApp.block.type">Type</label>
+        <div class="col-md-4">
+            <select class="form-control select select-primary" my-select="primary" name="gender" ng-model="entity.gender" ng-options="item.value as item.label for item in genderArray">
+                <option value="" ng-if="entity.gender">Select gender</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="well relative" ng-repeat="floor in block.floors"> 
+        <span class="label label-warning">Etage N° {{ floor.number}}</span>
+        <div class="form-group"> 
+            <label for="" class="col-sm-4 control-label">Nombre de chambres</label>
+            <div class="col-sm-4">
+                <input type="text" ng-model="floor.rooms" class="form-control"> 
+            </div> 
+        </div> 
+        <div class="form-group"> 
+            <label for="" class="col-sm-4 control-label">Capacité</label> 
+            <div class="col-sm-4"> 
+                <input type="text" ng-model="floor.capacity" class="form-control"> 
+            </div> 
+        </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-4 col-sm-4">
+        <button type="button" class="btn btn-success" ng-click="addFloor()"><i class="fa fa-plus"></i> ajouter un étage</button>
+        <button type="submit" name="subvalider" ng-disabled="roomFrom.$invalid" class="btn btn-primary btn-embossed">
+            <i class="fa fa-save"></i>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </div>
+</form>
+
+

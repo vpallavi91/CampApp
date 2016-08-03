@@ -1,0 +1,35 @@
+<h2><i class="fa fa-dropbox"></i> <span translate="campusApp.product.detail.title">Product</span> {{product.name}}</h2>
+<div class="row">
+    <div class="col-md-9">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td><span translate="campusApp.product.name">name</span></td>
+                    <td>{{product.name}}</td>
+                </tr>
+                <tr>
+                    <td><span translate="campusApp.product.type">type</span></td>
+                    <td>{{product.type}}</td>
+                </tr>
+                <tr>
+                    <td><span translate="campusApp.product.category">category</span></td>
+                    <td>{{product.category.name}}</td>
+                </tr>
+                <tr ng-show="product.allocation">
+                    <td><span translate="campusApp.allocation.status">status</span></td>
+                    <td>Réservé</td>
+                </tr>
+                <tr ng-show="product.allocation">
+                    <td><span translate="campusApp.allocation.person">allocation</span></td>
+                    <td><a ui-sref="personDetail({id:product.allocation.person._id})"> {{product.allocation.person.fullName}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3">
+        <button type="button" ui-sref="product" class="btn btn-info btn-block">
+            <span class="fa fa-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Revenir vers la liste</span>
+        </button>
+        <button my-printer type="button" class="btn btn-primary btn-block"><span class="fa fa-print"></span> Imprimer</button>
+    </div>
+</div>

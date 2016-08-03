@@ -1,0 +1,29 @@
+[
+  {
+    "_id": "5590c1f685a2e84c1114e55e",
+    "name": "block A",
+    "type": false,
+    "floors": 1,
+    "__v": 0,
+    "rooms": ["5590c2d685a2e84c1114e562", "5590c2db85a2e84c1114e563", "5590c2f385a2e84c1114e564"]
+  },
+  {
+    "_id": "5590c1fa85a2e84c1114e55f",
+    "name": "block B",
+    "type": false,
+    "floors": 1,
+    "__v": 0,
+    "rooms": ["5590c30185a2e84c1114e565", "5590c30885a2e84c1114e566", "5590c30c85a2e84c1114e567"]
+  },
+  {
+    "_id": "5590c20385a2e84c1114e560",
+    "name": "block C",
+    "type": true,
+    "floors": 1,
+    "__v": 0,
+    "rooms": []
+  }
+]
+
+
+

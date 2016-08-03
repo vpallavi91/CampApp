@@ -1,0 +1,23 @@
+{
+    "campusApp": {
+        "contribution" : {
+            "home": {
+                "title": "Contributions",
+                "createLabel": "Create a new Contribution",
+                "createOrEditLabel": "Create or edit a Contribution"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Contribution {{ id }}?"
+            },
+            "detail": {
+                "title": "Contribution"
+            },
+            "price": "Price",
+            "type": "Type",
+            "dateFrom": "DateFrom",
+            "dateTo": "DateTo",
+            "description": "Description",
+            "user": "user"
+        }
+    }
+}

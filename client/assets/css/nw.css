@@ -1,0 +1,83 @@
+body{
+    margin: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;    
+    background-color: #1abc9c;
+    border: 2px solid #bdc3c7;
+}
+a{
+    text-decoration: none;
+}
+
+.loading{
+    color: white;
+    padding-top: 18%;
+}
+.wrap{
+    position: fixed;
+    top: 37px;
+    bottom: 2px;
+    right: 2px;
+    left: 2px;
+    text-align: center;
+}
+
+header.window-toolbar{
+    height: 34px;
+    background: -webkit-linear-gradient(top, rgb(255,255,255) 0, rgb(225,225,225) 100%);
+    border-bottom: 1px solid rgb(205,205,205); 
+    -webkit-app-region: drag; 
+    -webkit-user-select: none;
+    /*background: url(http://blog-benaich.rhcloud.com/wp-content/themes/benblog/img/slidebg.png) center center #34495e;*/
+    /*background-position-x: -88px;*/
+}
+
+header.window-toolbar img{
+    position: absolute;
+    left: 5px;
+    top: 4px;
+    width: 25px;
+    height: 25px;
+}
+
+/*Window Controls*/
+header.window-toolbar>ul{
+    float: right;
+    text-align: right;
+    line-height: 0;
+    padding-left: 6px;
+    margin: 0;
+}
+header.window-toolbar>ul>li,
+header.window-toolbar>ul>li>a{
+    display: inline-block;
+}
+header.window-toolbar>ul{
+    float: right;
+}
+header.window-toolbar>ul>li>a{
+    width: 22px;
+    height: 22px;
+    margin: 6px 6px 6px 0;
+    background-image: url('./icons.svg');
+    background-repeat: no-repeat;
+    -webkit-transition: -webkit-transform 200ms;
+    -webkit-app-region: no-drag;
+}
+header.window-toolbar>ul>li>a:hover,
+header.window-toolbar>ul>li>a:focus{
+    -webkit-transform: scale(1.22,1.22);
+    outline: none;
+}
+a#windowControlClose{
+    background-position: -44px 0;
+}
+a#windowControlMaximize{
+    background-position: -22px 0;
+}
+a#windowControlMinimize{
+    background-position: 0 0;
+}

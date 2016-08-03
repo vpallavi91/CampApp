@@ -1,0 +1,31 @@
+{
+    "campusApp": {
+        "user" : {
+            "home": {
+                "title": "List des utilisateurs",
+                "createLabel": "Créer un nouveau utilisateur",
+                "createOrEditLabel": "Créer ou éditer un utilisateur"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer l'utilisateur {{ id }} ?",
+                "multiplequestion": "Etes-vous certain de vouloir supprimer les utilisateurs séléctionnés ?"
+            },
+            "detail": {
+                "title": "Utilisateur"
+            },
+            "label": {
+                "profile": "Profile",
+                "fiche": "Fiche d'utilisateur"
+            },
+            "username": "Nom d'utilisateur",
+            "email": "Couriel",
+            "lastName": "Nom",
+            "firstName": "Prénom",
+            "tel": "Tel",
+            "activated": "Activé",
+            "langKey": "Langue",
+            "roles": "Droit d'accées"
+        }
+    }
+}
+

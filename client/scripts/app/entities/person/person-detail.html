@@ -1,0 +1,103 @@
+<div class="row">
+    <div class="col-xs-6 hidden-print">
+        <h2><span class="fa fa-user"></span> {{ entity.firstName }} {{ entity.lastName }} </h2>
+    </div>
+    <div class="col-xs-6">
+      <div class="btn-group pull-right hidden-print">         
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">     
+        <span translate="action.select">Select an action</span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-inverse">
+          <li is-granted="person.update"><a ui-sref="personSave({id:entity._id})"><i class="fa fa-edit"></i> <span translate="entity.action.edit">Edit</span></a></li>
+          <li><a><i class="fa fa-credit-card"></i> <span translate="entity.action.print.card">Print card</span></a></li>
+          <li><a><i class="fa fa-ticket"></i> <span translate="entity.action.print.ticket">Print ticket</span></a></li>
+          <li><a my-printer><i class="fa fa-print"></i> <span translate="entity.action.print.page">Print page</span></a></li>
+          <li is-granted="reservation.create" ng-show="!entity.reservation || entity.reservation.satus"><a ui-sref="reservationSave({person:entity._id})"><i class="fa fa-hotel"></i> <span translate="campusApp.room.action.bookRoom">Book a Room</span></a></li>
+          <li is-granted="allocation.create"><a ui-sref="allocationSave({person:entity._id})"><i class="fa fa-archive"></i> <span translate="entity.action.allocate">allocate a product</span></a></li>
+        </ul>
+      </div>
+    </div>
+</div>
+  <h2 class="visible-print text-center">Person's detail</h2>
+  
+<div class="row">
+  <div class="col-md-4">
+    <div class="box">
+      <header>
+          <h3><i class="fa fa-user"></i> Profile</h3>
+      </header>
+      <ul class="list-group">
+          <li class="list-group-item"><strong translate="campusApp.person.lastName">family name:</strong> {{ entity.lastName }}</li>
+          <li class="list-group-item"><strong translate="campusApp.person.firstName">first name:</strong>  {{ entity.firstName }}</li>
+          
+          <li class="list-group-item"><strong translate="campusApp.person.gender">gender:</strong> {{ entity.gender | genderConversion }}</li>
+          <li class="list-group-item"><strong translate="campusApp.person.birthDay">birthDay:</strong> {{ entity.birthDay | amDateFormat:'DD-MM-YYYY' }}</li>
+          <li class="list-group-item"><strong translate="campusApp.person.archived">archived :</strong> {{ entity.isArchived }}</li>
+          <li class="list-group-item"><strong translate="campusApp.person.banned">banned :</strong> {{ entity.isBanned }}</li>
+      </ul>
+    </div>
+  </div> 
+
+  <div class="col-md-4">
+    <div class="box">
+        <header>
+            <h3><i class="fa fa-book"></i> Contact</h3>
+        </header>
+        <ul class="list-group">
+           <li class="list-group-item"><strong translate="campusApp.person.tel">tel :</strong> {{ entity.tel }}</li>
+           <li class="list-group-item"><strong translate="campusApp.person.address">address :</strong> {{ entity.address }}</li>
+           <li class="list-group-item"><strong translate="campusApp.person.city">city :</strong> {{ entity.city }}</li>
+           <li class="list-group-item"><strong translate="campusApp.person.country">country :</strong> {{ entity.country }}</li>
+           
+           <li class="list-group-item"><strong translate="campusApp.person.status">status :</strong> {{ entity.status }}</li>
+        </ul>
+    </div>
+    <div class="box">
+      <header>
+          <h3><i class="fa fa-tag"></i> MetaData</h3>
+      </header>
+      <ul class="list-group">
+          <li class="list-group-item"><strong translate="entity.attr.created">Created date:</strong> <span am-time-ago="entity.created"></span></li>
+          <li class="list-group-item"><strong translate="entity.attr.updated">Updated date:</strong>  <span am-time-ago="entity.updated"></span></li>
+      </ul>
+    </div>
+  </div> 
+
+  <div class="col-md-4">
+    <div class="box">
+        <header>
+            <h3><span class="fa fa-hotel"></span> Reservation Information </h3>
+        </header>
+        <ul class="list-group" ng-show="entity.reservation">
+          <li class="list-group-item"><strong>Date début :</strong> {{ entity.reservation.dateFrom | amDateFormat:'DD-MM-YYYY' }}  </li>
+          <li class="list-group-item"><strong>Date fin :</strong> {{ entity.reservation.dateTo | amDateFormat:'DD-MM-YYYY' }} </li>
+          <li class="list-group-item"><strong>Numero de chambre :</strong> {{ entity.reservation.room.name }} </li>
+          <li class="list-group-item"><strong>Numero de pavé :</strong> {{ entity.reservation.room.block.name }} </li>
+          <li class="list-group-item"><strong>Date de payement :</strong> {{ entity.reservation.datePayement | amDateFormat:'DD-MM-YYYY' }}  </li>
+          <li class="list-group-item"><strong>Montant :</strong> {{ entity.reservation.price }} DH </li>
+          <li class="list-group-item"><strong>Status :</strong> {{{true: 'valide', false: 'invalide'}[entity.reservation.status ]}} </li>
+        </ul>
+
+        <ul class="list-group" ng-hide="entity.reservation">
+          <li class="list-group-item">No Reservations !</li>
+        </ul>
+    </div>
+
+    <div class="box">
+      <header>
+          <h3><i class="fa fa-dropbox"></i> List of Reserved Products</h3>
+      </header>
+      <ul class="list-group">
+        <li class="list-group-item" ng-show="entity.allocations.length">
+          <a ng-repeat="allocation in entity.allocations" ui-sref="productDetail({id:allocation.product._id})"> 
+          {{ allocation.product.name }} </a>
+        </li>
+      </ul>
+      <ul class="list-group" ng-hide="entity.allocations.length">
+          <li class="list-group-item">No Products !</li>
+      </ul>
+    </div>
+  </div>
+</div>
+

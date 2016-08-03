@@ -1,0 +1,38 @@
+
+<div>
+    <h2><span translate="campusApp.config.detail.title">Config</span> {{config.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th translate="entity.detail.field">Field</th>
+                    <th translate="entity.detail.value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span translate="campusApp.config.key">Key</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{config.key}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span translate="campusApp.config.value">Value</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{config.value}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="config"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

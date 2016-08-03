@@ -1,0 +1,23 @@
+{
+    "campusApp": {
+        "allocation" : {
+            "home": {
+                "title": "Allocations",
+                "createLabel": "Créer un nouveau Allocation",
+                "createOrEditLabel": "Créer ou éditer un Allocation"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Allocation {{ id }} ?",
+                "multiplequestion": "êtes vous sûr de supprimer ses allocations ?" 
+            },
+            "detail": {
+                "title": "Allocation"
+            },
+            "type": "Type",
+            "status": "Status",
+            "person": "Etudiant",
+            "product": "Produit"
+        }
+    }
+}
+

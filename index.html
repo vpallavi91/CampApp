@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <link href="client/assets/css/nw.css" rel="stylesheet" />
+  </head>
+  <body>
+        <header class="window-toolbar">
+            <ul>
+                <li><a href='#' title='Minimize' id='windowControlMinimize'></a></li>
+                <li><a href='#' title='Maximize' id='windowControlMaximize'></a></li>
+                <li><a href='#' title='Close'    id='windowControlClose'   ></a></li>
+            </ul>
+        </header>
+
+        <div class="wrap">
+          <div id="loader" class="loading">
+            <h1>Loading...</h1>
+          </div>
+
+          <iframe id="myFrame" frameborder="0"  height="100%" width="100%"></iframe>
+        </div>
+
+    <script type="text/javascript" src="server/app.js"></script>
+    <script src="client/bower_components/jquery/dist/jquery.js"></script>
+    <script>
+
+
+    (function($) {
+
+        var nw = require('nw.gui');
+        var win = nw.Window.get();
+        win.isMaximized = false;
+        
+        // Min
+        document.getElementById('windowControlMinimize').onclick = function()
+        {
+            win.minimize();
+        };
+
+        // Close
+        document.getElementById('windowControlClose').onclick = function()
+        {
+            win.close();
+        };
+
+        // Max
+        document.getElementById('windowControlMaximize').onclick = function()
+        {
+            if (win.isMaximized)
+                win.unmaximize();
+            else
+                win.maximize();
+        };
+
+        win.on('maximize', function(){
+            win.isMaximized = true;
+        });
+
+        win.on('unmaximize', function(){
+            win.isMaximized = false;
+        });
+
+        
+      var loader = $('#loader'),
+        myFrame = $('#myFrame').hide(),
+        url = 'http://127.0.0.1:9000';
+
+        var load = function () {
+            $.ajax({  
+            url: url, 
+            success: function(data){ 
+              loader.hide();
+              myFrame.show();
+              myFrame.attr('src', url);
+            },
+            error:load
+          });
+        };
+
+        load(); 
+
+
+    })(jQuery);
+
+</script>
+  </body>
+</html>

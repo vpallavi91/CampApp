@@ -1,0 +1,26 @@
+{
+    "campusApp": {
+        "product" : {
+            "home": {
+                "title": "liste des articles",
+                "createLabel": "Creé un nouveau article",
+                "lib":"product",
+                "createOrEditLabel": "Creé/modifier a un article"
+            },
+            "delete": {
+                "question": "êtes vous sûr de supprimer l'article '{{ name}}' ?",
+                "multiplequestion": "êtes vous sûr de supprimer ses articles ?"                
+            },
+            "detail": {
+                "title": "Article"
+            },
+            
+            "name": "Nom",
+            "type": "Type",
+            "quantity":"quantité",
+            "category":"categorie",
+            "available":"available"
+        }
+    }
+}
+

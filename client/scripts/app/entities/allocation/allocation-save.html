@@ -1,0 +1,86 @@
+<h2><span class="fa fa-user"></span> <span translate="campusApp.allocation.detail.title">Allocation</span> {{ person.firstName }} {{ person.lastName }} </h2>
+
+<form name="allocationFrom" role="form" class="form-horizontal" novalidate ng-submit="save()" show-validation>
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="person">person</label>
+    <div class="col-md-4">
+      <input type="text" class="form-control disabled" name="person" ng-model="person.fullName" disabled/>
+    </div>
+  </div> 
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="product">product</label>
+    <div class="col-md-4">
+      <input type="text" class="form-control disabled" disabled name="product" ng-model="product.name" />
+    </div>
+    <a class="btn btn-primary col-md-1" data-toggle="modal" data-target="#productModal"><span class="fa fa-search"></span></a>
+  </div>    
+  <div class="form-group">
+      <div class="col-sm-offset-4 col-sm-4">
+        <button type="submit" name="subvalider" ng-disabled="personFrom.$invalid" class="btn btn-primary btn-embossed">
+          <i class="fa fa-save"></i>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </div>
+</form>
+
+    <!-- save modal -->
+    <div class="modal fade" id="productModal">
+        <div class="modal-dialog modal-large">
+            <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"ng-click="clear()">&times;</button>
+                      <h4 class="modal-title" id="myRoomLabel" translate="campusApp.allocation.home.check">allocation check</h4>
+                  </div>
+                  <div class="modal-body">
+                      <form ng-submit="loadPage(pagination.first)" role="from" class="searchPanel">
+                        <div class="row hidden-print">
+                          <div class="col-md-5 col-xs-6">
+                              <div class="form-group">
+                                <div class="input-group">
+                                  <input type="text" class="form-control" placeholder="Search" ng-model="searchData.keyword">
+                                  <span class="input-group-btn">
+                                    <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                                  </span>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </form>
+                    <table class="table table-hover table-bordered table-striped">
+                        <thead>
+                            <tr>
+                              <th ng-repeat="field in fields" ng-class="{'sortable': field.sortable}" ng-show="field.visible" my-sortabale>
+                                  <a ng-if="field.sortable" ng-click="changeOrder(field.label)"><span translate="{{ getFieldLabel('product', field) }}">label</span> <i class="fa pull-right" ng-class="{'fa-sort-amount-desc': searchData.orderDir === 'desc', 'fa-sort-amount-asc': searchData.orderDir === 'asc'}"></i></a>
+                                  <span ng-if="!field.sortable" translate="{{ getFieldLabel('product', field) }}">label</span>
+                              </th>
+                              <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="entity in products">
+                                <td ng-repeat="field in fields" ng-show="field.visible">{{ getFieldValue(entity, field)}}</td>
+                                <td>
+                                    <button ng-click="selectProduct(entity._id)"
+                                            is-granted="product.update"
+                                            class="btn btn-primary  btn-embossed btn-xs">
+                                        <i class="fa fa-check"></i>&nbsp;<span translate="entity.action.check"> reserver</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <nav>
+                        <ul class="pager" >
+                            <li ng-show="pagination.first" ng-click="loadPage(pagination.first)"><a>&lt;&lt;</a></li>
+                            <li ng-show="pagination.prev" ng-click="loadPage(pagination.prev)"><a>&lt;</a></li>
+                            <li ng-show="pagination.next" ng-click="loadPage(pagination.next)"><a>&gt;</a></li>
+                            <li ng-show="pagination.last" ng-click="loadPage(pagination.last)"><a>&gt;&gt;</a></li>
+                        </ul>
+                    </nav>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+
+

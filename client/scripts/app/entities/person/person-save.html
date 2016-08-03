@@ -1,0 +1,89 @@
+<h2 ng-show="!isUpdate"><span class="fui-user"></span> <span translate="campusApp.person.home.createLabel">add entity</span></h2>
+<h2 ng-show="isUpdate"><span class="fui-user"></span> <span translate="campusApp.person.home.editLabel">update entity</span></h2>
+<form name="personFrom" role="form" class="form-horizontal" novalidate ng-submit="save()" show-validation>
+	<input type="hidden" name="id" ng-model="entity._id" />
+	<div class="form-group">
+		<label class="col-md-4 control-label" for="entity.lastName" translate="campusApp.person.lastName">Last Name</label>
+		<div class="col-md-4">
+			<input type="text" class="form-control" name="lastName" ng-model="entity.lastName" />
+		</div>					
+		<div class="help-block col-md-4" ng-show="personFrom.lastName.$invalid">
+			<p class="help-block" ng-show="personFrom.lastName.$error.required" translate="global.messages.validate.lastName.required"> Your lastName is required. </p>
+			<p class="help-block" ng-show="personFrom.lastName.$error.minlength" translate="global.messages.validate.lastName.minlength"> Your lastName is required to be at least 5 characters </p>
+            <p class="help-block" ng-show="personFrom.lastName.$error.maxlength" translate="global.messages.validate.lastName.maxlength"> Your lastName cannot be longer than 100 characters </p>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-4 control-label" for="entity.firstName" translate="campusApp.person.firstName">First Name</label>
+		<div class="col-md-4">
+			<input type="text" class="form-control" name="firstName" ng-model="entity.firstName" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-4 control-label" for="entity.codeType" translate="campusApp.person.codeType">codeType</label>
+		<div class="col-md-4">
+			<input type="text" class="form-control" name="codeType" ng-model="entity.codeType" />
+		</div>
+	</div>
+	<div class="form-group" ng-class="{true: 'has-error'}[personFrom.code.$invalid]">
+		<label class="col-md-4 control-label" for="entity.code" translate="campusApp.person.code">code</label>
+		<div class="col-md-4">
+			<input type="text" class="form-control" name="code" ng-model="entity.code" />
+		</div>
+		<div class="help-block col-md-4" ng-show="personFrom.code.$invalid">
+			<p class="help-block" ng-show="personFrom.code.$error.required" translate="entity.validation.required"> This field is required. </p>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-4 control-label" for="entity.gender" translate="campusApp.person.gender">gender</label>
+		<div class="col-md-4">
+		    <select class="form-control select select-primary" my-select="primary" name="gender" ng-model="entity.gender" ng-options="item.value as item.label for item in genderArray">
+		    	<option value="" ng-if="entity.gender"><span translate="entity.action.select">select</span></option>
+		    </select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-4 control-label" for="entity.birthDay" translate="campusApp.person.birthDay">birthDay</label>
+		<div class="col-md-4">
+			<input type="text" my-date-picker="primary" class="form-control" name="birthDay" ng-model="entity.birthDay" />
+		</div>
+	</div>
+	<!-- Contact -->
+	<div class="form-group">
+		<label class="col-md-4 control-label" for="entity.address" translate="campusApp.person.address">address</label>
+		<div class="col-md-4">
+			<input type="text" class="form-control" name="address" ng-model="entity.address" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-4 control-label" for="entity.city" translate="campusApp.person.city">city</label>
+		<div class="col-md-4">
+			<input type="text" class="form-control" name="city" ng-model="entity.city" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-4 control-label" for="entity.country" translate="campusApp.person.country">country</label>
+		<div class="col-md-4">
+			<input type="text" class="form-control" name="country" ng-model="entity.country" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-4 control-label" for="entity.tel" translate="campusApp.person.tel">tel</label>
+		<div class="col-md-4">
+			<input type="text" class="form-control" name="tel" ng-model="entity.tel" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-md-4 control-label" for="entity.description" translate="campusApp.person.description">description</label>
+		<div class="col-md-4">
+			<input type="text" class="form-control" name="description" ng-model="entity.description" />
+		</div>
+	</div>    
+	<div class="form-group">
+      <div class="col-sm-offset-4 col-sm-4">
+        <button type="submit" name="subvalider" ng-disabled="personFrom.$invalid" class="btn btn-primary btn-embossed">
+        	<i class="fa fa-save"></i>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </div>
+</form>

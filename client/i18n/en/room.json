@@ -1,0 +1,37 @@
+{
+    "campusApp": {
+        "room" : {
+            "home": {
+                "title": "Liste des chambres",
+                "createLabel": "Ajouter une nouvelle chambre",
+                "createOrEditLabel": "Ajouter ou mettre à jour une chambre"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer la chambre {{ id }}?",
+                "multiplequestion": "êtes vous sûr de supprimer ces chambres ?"
+            },
+            "detail": {
+                "title": "Chambre"
+            },
+            "action":{
+                "book": "Réserver",
+                "bookRoom": "Réserver une chambre",
+                "free": "Libérer",
+                "addMultiple": "Ajout multiple"
+            },
+            "label":{
+                "all": "Toutes les chambres",
+                "available": "Les chambres dispoinble",
+                "reserved": "Les chambres résérver"
+            },
+            "name": "Nom",
+            "floor": "Etage",
+            "capacity": "Capacité",
+            "free": "Dispoinble",
+            "type": "Type",
+            "block": "Pavillon"
+        }
+    }
+}
+
+

@@ -1,0 +1,72 @@
+[
+  {
+    "_id": "5590c2d685a2e84c1114e562",
+    "name": "A11",
+    "floor": 0,
+    "capacity": 2,
+    "free": 2,
+    "__v": 0,
+    "block": "5590c1f685a2e84c1114e55e",
+    "reservations": ["5590c5c985a2e84c1114e56b", "5590c5f185a2e84c1114e56c"]
+  },
+  {
+    "_id": "5590c2db85a2e84c1114e563",
+    "name": "A12",
+    "floor": 0,
+    "capacity": 2,
+    "free": 2,
+    "__v": 0,
+    "block": "5590c1f685a2e84c1114e55e",
+    "reservations": []
+  },
+  {
+    "_id": "5590c2f385a2e84c1114e564",
+    "name": "A21",
+    "floor": 0,
+    "capacity": 2,
+    "free": 2,
+    "__v": 0,
+    "block": "5590c1f685a2e84c1114e55e",
+    "reservations": []
+  },
+  {
+    "_id": "5590c30185a2e84c1114e565",
+    "name": "B11",
+    "floor": 0,
+    "capacity": 2,
+    "free": 2,
+    "__v": 0,
+    "block": "5590c1fa85a2e84c1114e55f",
+    "reservations": []
+  },
+  {
+    "_id": "5590c30885a2e84c1114e566",
+    "name": "B12",
+    "floor": 0,
+    "capacity": 2,
+    "free": 2,
+    "__v": 0,
+    "block": "5590c1fa85a2e84c1114e55f",
+    "reservations": []
+  },
+  {
+    "_id": "5590c30c85a2e84c1114e567",
+    "name": "B13",
+    "floor": 0,
+    "capacity": 2,
+    "free": 2,
+    "__v": 0,
+    "block": "5590c1fa85a2e84c1114e55f",
+    "reservations": []
+  },
+  {
+    "_id": "55aae896b6d259241e7a81a0",
+    "name": "C01",
+    "floor": 0,
+    "capacity": 2,
+    "free": 2,
+    "__v": 0,
+    "block": "5590c20385a2e84c1114e560",
+    "reservations": []
+  }
+]

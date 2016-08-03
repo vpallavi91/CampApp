@@ -1,0 +1,56 @@
+[
+  {
+    "_id": "5590bf7a85a2e84c1114e550",
+    "__v": 0,
+    "key": "appName",
+    "value": "pallavi"
+  },
+  {
+    "_id": "5590bf7a85a2e84c1114e551",
+    "__v": 0,
+    "key": "logo",
+    "value": "uploads/img/logo.png"
+  },
+  {
+    "_id": "5590bf7a85a2e84c1114e552",
+    "__v": 0,
+    "key": "address",
+    "value": "2611 Portland Street"
+  },
+  {
+    "_id": "5590bf7a85a2e84c1114e553",
+    "__v": 0,
+    "key": "city",
+    "value": "Los Angeles"
+  },
+  {
+    "_id": "5590bf7a85a2e84c1114e554",
+    "__v": 0,
+    "key": "tel",
+    "value": "0123456789"
+  },
+  {
+    "_id": "5590bf7a85a2e84c1114e555",
+    "__v": 0,
+    "key": "gsm",
+    "value": "0123456789"
+  },
+  {
+    "_id": "5590bf7a85a2e84c1114e556",
+    "__v": 0,
+    "key": "perPage",
+    "value": "10"
+  },
+  {
+    "_id": "5590bfa685a2e84c1114e557",
+    "__v": 0,
+    "key": "theme",
+    "value": "theme_blue"
+  },
+  {
+    "_id": "5590bf9a85a2e84c1114e558",
+    "__v": 0,
+    "key": "css",
+    "value": "/* this is css */ "
+  }
+]

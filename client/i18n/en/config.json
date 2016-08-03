@@ -1,0 +1,20 @@
+{
+    "campusApp": {
+        "config" : {
+            "home": {
+                "title": "Configs",
+                "createLabel": "Créer un nouveau Config",
+                "createOrEditLabel": "Créer ou éditer un Config"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Config {{ id }} ?"
+            },
+            "detail": {
+                "title": "Config"
+            },
+            "key": "Key",
+            "value": "Value"
+        }
+    }
+}
+

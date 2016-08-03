@@ -1,0 +1,35 @@
+{
+    "campusApp": {
+        "room" : {
+            "home": {
+                "title": "Rooms",
+                "createLabel": "Create a new Room",
+                "createOrEditLabel": "Create or edit a Room"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Room {{ id }}?",
+                "multiplequestion": "Are you sure you want to delete all these  Products ?"
+            },
+            "detail": {
+                "title": "Room"
+            },
+            "action":{
+                "book": "Reserve",
+                "bookRoom": "Reserve a room",
+                "free": "Release",
+                "addMultiple": "Add multiple"
+            },
+            "label":{
+                "all": "All rooms",
+                "available": "Rooms available",
+                "reserved": "Rooms reserved"
+            },
+            "name": "Name",
+            "floor": "Floor",
+            "capacity": "Capacity",
+            "free": "Free",
+            "type": "Type",
+            "block": "block"
+        }
+    }
+}

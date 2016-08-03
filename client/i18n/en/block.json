@@ -1,0 +1,26 @@
+{
+    "campusApp": {
+        "block" : {
+            "home": {
+                "title": "Liste des pavillons",
+                "createLabel": "Ajouter un nouvel pavillon",
+                "createOrEditLabel": "ajouter ou mettre à jour pavillon"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le pavillon {{ id }} ?",
+                "multiplequestion": "êtes vous sûr de supprimer ces chambres ?"
+            },
+            "detail": {
+                "title": "Pavillon"
+            },
+            "label":{
+                "all": "Toutes les pavillons"
+            },
+            "name": "Nom",
+            "type": "Type",
+            "count": "Nombre de chambres",
+            "floors": "Nombre d'étage"
+        }
+    }
+}
+

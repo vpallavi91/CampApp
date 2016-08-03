@@ -1,0 +1,89 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Campus</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <base href="/">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="stylesheet" href="app/7fd12631.vendor.css"/>
+        <link rel="stylesheet" href="app/de5d45e2.app.css"/>
+
+    </head>
+    <body ng-app="campusApp" ng-class="{'theme1 app': isAuthenticated() , 'login-screen': !isAuthenticated()}">
+    <style>{{ appConfig.css }}</style>
+        <!--[if lt IE 10]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <header id="adminbar" class="header hidden-print navbar" ng-show="isAuthenticated()" ng-cloak="">
+            <a href="#" id="logo">
+              <img ng-src="{{ appConfig.logo }}" alt="logo" class="img-small" /> <span>{{ appConfig.appName }}</span>
+            </a>
+
+            <div class="dropdown pull-right user-profile">
+                <a href="#" id="drop3" role="button" class="dropdown-toggle"
+                    data-toggle="dropdown"> <img class="img-small"
+                    src="assets/images/1cd997f2.user.jpeg" alt="username" /> <span
+                    class="fullname">{{ account.fullName }}</span> <span class="fui-triangle-down-small"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="navbar-content">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <img src="assets/images/1cd997f2.user.jpeg" alt="avatar"
+                                        class="img-responsive" />
+                                    <div class="clearfix"></div>
+                                    <p></p>
+                                </div>
+                                <div class="col-xs-7">
+                                    <span>{{ account.username }}</span>
+                                    <p class="text-muted small">{{ account.email }}</p>
+                                    <div class="divider"></div>
+                                    <span>{{ account.roles | role }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="navbar-footer">
+                            <div class="navbar-footer-content">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <a ui-sref="settings" class="btn btn-default btn-sm" translate="global.menu.entities.settings">settings</a>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <a ui-sref="logout" class="btn btn-default btn-sm pull-right" translate="global.menu.account.logout">logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section class="printHeader text-center visible-print">
+          <h2><img ng-src="{{ appConfig.logo }}" alt="logo" class="img-small" /> {{ appConfig.appName }}</h2>
+          <hr>
+        </section>
+
+        <div ui-view="navbar"  ng-show="isAuthenticated()" ng-cloak=""></div>
+        <section class="wrap">
+            <div class="container"  ng-cloak="">
+                <div class="slide-right" ui-view="content"></div>
+            </div>
+        </section>
+
+        <!--[if lt IE 9]>
+        <script src="bower_components/es5-shim/es5-shim.js"></script>
+        <script src="bower_components/json3/lib/json3.min.js"></script>
+        <![endif]-->
+        <script src="app/42604f87.vendor.js"></script>
+
+        <script src="app/b5bd8b44.app.js"></script>
+
+</body>
+</html>

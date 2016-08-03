@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-xs-6 hidden-print">
+        <h2><span class="fa fa-user"></span> {{ user.firstName }} {{ user.lastName }} </h2>
+    </div>
+    <div class="col-xs-6">
+      <div class="btn-group pull-right hidden-print">              
+        <button class="btn btn-primary "><i class="fa fa-gear"></i> <span translate="action.select">Select an action</span></button>
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-inverse">
+          <li is-granted="user.update"><a ui-sref="userSave({id:user._id})"><i class="fa fa-edit"></i> <span translate="entity.action.edit">Edit</span></a></li>
+          <li><a><i class="fa fa-credit-card"></i> <span translate="entity.action.print.card">Print card</span></a></li>
+          <li><a my-printer><i class="fa fa-print"></i> <span translate="entity.action.print.page">Print page</span></a></li>
+        </ul>
+      </div>
+    </div>
+</div>
+  
+<h2 class="visible-print text-center" translate="campusApp.user.label.fiche"></h2>
+
+<div class="row">
+    <div class="col-md-4">
+      <div class="box mybadge hidden-print">
+        <img class="pull-left pic" src="assets/images/user.jpeg"/>
+        <img class="pull-right logo" src="assets/images/logo.png"/>
+        <h2>campusApp</h2>
+        <ul class="list-unstyled">
+            <li><strong>{{ user.firstName }} {{ user.lastName }}</strong></li>
+            <li>{{ user.email }}</li>
+        </ul>
+        <div class="footer label-primary">
+           <span>keep calm and relax</span>
+            <span class="pull-right">2015</span>
+        </div>
+      </div>
+    </div>
+
+
+  <div class="col-md-8">
+    <div class="box">
+      <header>
+          <h3><i class="fa fa-user"></i> <span translate="campusApp.user.label.profile">Profile</span></h3>
+      </header>
+      <ul class="list-group">
+          <li class="list-group-item"><strong translate="campusApp.user.lastName">family name:</strong> {{ user.lastName }}</li>
+          <li class="list-group-item"><strong translate="campusApp.user.firstName">first name:</strong>  {{ user.firstName }}</li>
+         
+              <li class="list-group-item"><strong translate="campusApp.user.email">email :</strong> <a href="mailto:{{ user.email }}">{{ user.email }}</a></li>
+          <li class="list-group-item"><strong translate="campusApp.user.activated">activated :</strong> {{ user.activated }}</li>
+          <li class="list-group-item"><strong translate="campusApp.user.langKey">langKey :</strong> {{ user.activated }}</li>
+          <li class="list-group-item"><strong translate="entity.attr.created">created : </strong> <span am-time-ago="user.created"></span></li>
+          <li class="list-group-item"><strong translate="campusApp.user.roles">authorities : </strong> <br> 
+            <ul>
+              <li ng-repeat="role in user.roles"> <strong>{{ role.label }} :</strong> <span ng-repeat="action in role.value"><em translate="entity.roles.{{ action }}">action</em> </span> </li>
+            </ul>
+          </li>
+      </ul>
+    </div>
+  </div> 
+</div>

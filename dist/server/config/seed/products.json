@@ -1,0 +1,42 @@
+[
+  {
+    "_id": "5590c10785a2e84c1114e559",
+    "name": "tv",
+    "type": "type A",
+    "category": "5590c04e85a2e84c1114e556",
+    "isValide":true,
+    "__v": 0
+  },
+  {
+    "_id": "5590c12885a2e84c1114e55a",
+    "name": "lamp",
+    "type": "type B",
+    "category": "5590c04e85a2e84c1114e556",
+    "isValide":true,
+    "__v": 0
+  },
+  {
+    "_id": "5590c13e85a2e84c1114e55b",
+    "name": "sofa",
+    "type": "type C",
+    "category": "5590c04e85a2e84c1114e556",
+    "isValide":true,
+    "__v": 0
+  },
+  {
+    "_id": "5590c15685a2e84c1114e55c",
+    "name": "chair",
+    "type": "type C",
+    "category": "5590c05285a2e84c1114e557",
+    "isValide":false,
+    "__v": 0
+  },
+  {
+    "_id": "5590c15d85a2e84c1114e55d",
+    "name": "desk",
+    "type": "type C",
+    "category": "5590c05285a2e84c1114e557",
+    "isValide":false,
+    "__v": 0
+  }
+]

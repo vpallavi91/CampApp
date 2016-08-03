@@ -1,0 +1,85 @@
+person{
+	code
+	codeType {cin, passeport, carte sejour}
+	family_name
+	first_name
+	country
+	study_level
+	gender
+	description
+	birthday
+	address
+	city
+	type {normal, special, foreigner}
+	is_resident
+	is_archived
+	is_banned
+	created
+	updated
+	reservations => oneToMany
+}
+
+block{
+	name
+	type
+	rooms => oneToMany
+}
+
+room{
+	name
+	floor
+	capacity
+	free
+	block => manyToOne
+	reservations => oneToMany
+}
+
+reservation{
+	date_payement
+	date_from
+	date_to
+	status
+	price
+	person  => manyToOne
+	room  => manyToOne
+}
+
+product{
+	name
+	type
+	category  => manyToOne
+}
+
+category{
+	name
+	products => oneToMany
+}
+
+allocation{
+	type {room or person}
+	status {valid, not valid}
+	product => oneToOne
+	room => manyToOne
+	person => manyToOne
+}
+
+config{
+	key
+	value
+}
+
+user{
+	name
+	email
+	role
+	password
+	authorities => manyToMany
+}
+
+authority{
+	name
+	description
+}
+
+
+

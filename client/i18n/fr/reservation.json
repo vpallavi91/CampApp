@@ -1,0 +1,26 @@
+{
+    "campusApp": {
+        "reservation" : {
+            "home": {
+                "title": "Reservations",
+                "createLabel": "Create a new Reservation",
+                "createOrEditLabel": "Create or edit a Reservation",
+                "check": "Book a room"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Reservation ?",
+                "multiplequestion": "Are you sure you want to delete these reservations ?"
+            },
+            "detail": {
+                "title": "Reservation"
+            },
+            "person": "Student",
+            "room": "Room",
+            "datePayement": "DatePayment",
+            "dateFrom": "DateFrom",
+            "dateTo": "DateTo",
+            "status": "Status",
+            "price": "Price"
+        }
+    }
+}

@@ -1,0 +1,93 @@
+'use strict';
+
+angular.module('campusApp')
+    .factory('Principal', function Principal($q, Account) {
+        var _identity,
+            _authenticated = false;
+
+        return {
+            isIdentityResolved: function () {
+                return angular.isDefined(_identity);
+            },
+            isAuthenticated: function () {
+                return _authenticated;
+            },
+            isInRole: function (role) {
+                if (!_authenticated || !_identity || !_identity.roles) {
+                    return false;
+                }
+
+                return _identity.roles.indexOf(role) !== -1;
+            },
+            isInAnyRole: function (roles) {
+                if (!_authenticated || !_identity.roles) {
+                    return false;
+                }
+
+                for (var i = 0; i < roles.length; i++) {
+                    if (this.isInRole(roles[i])) {
+                        return true;
+                    }
+                }
+
+                return false;
+            },
+            hasAllRoles: function (roles) {
+                if (!_authenticated || !_identity.roles) {
+                    return false;
+                }
+
+                for (var i = 0; i < roles.length; i++) {
+                    if (!this.isInRole(roles[i])) {
+                        return false;
+                    }
+                }
+
+                return true;
+            },
+            isGranted: function(stateRoles) {   
+                if(stateRoles.constructor !== Array){
+                    stateRoles = [stateRoles];  
+                }
+                if (stateRoles && stateRoles.length > 0) {
+                    if(!this.hasAllRoles(stateRoles)){
+                        return false;
+                    }
+                }
+                return true;
+            },
+            authenticate: function (identity) {
+                _identity = identity;
+                _authenticated = identity !== null;
+            },
+            identity: function (force) {
+                var deferred = $q.defer();
+
+                if (force === true) {
+                    _identity = undefined;
+                }
+
+                // check and see if we have retrieved the identity data from the server.
+                // if we have, reuse it by immediately resolving
+                if (angular.isDefined(_identity)) {
+                    deferred.resolve(_identity);
+
+                    return deferred.promise;
+                }
+
+                // retrieve the identity data from the server, update the identity object, and then resolve.
+                Account.get().$promise
+                    .then(function (account) {
+                        _identity = account;
+                        _authenticated = true;
+                        deferred.resolve(account);
+                    })
+                    .catch(function() {
+                        _identity = null;
+                        _authenticated = false;
+                        deferred.resolve(_identity);
+                    });
+                return deferred.promise;
+            }
+        };
+    });

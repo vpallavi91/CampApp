@@ -1,0 +1,51 @@
+{
+    "campusApp": {
+        "user" : {
+            "home": {
+                "title": "Profiles",
+                "createLabel": "Create a new Profile",
+                "createOrEditLabel": "Create or edit a Profile"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Profile {{ id }}?"
+            },
+            "detail": {
+                "title": "Profile"
+            },
+            "label": {
+                "profile": "Profile",
+                "fiche": "User Profile"
+            },
+            "username": "Username",
+            "email": "Email",
+            "lastName": "Lastname",
+            "firstName": "FirstName",
+            "barcode": "Barcode",
+            "cin": "Cin",
+            "birthDay": "BirthDay",
+            "gender": "Gender",
+            "address": "Address",
+            "zipCode": "ZipCode",
+            "city": "City",
+            "country": "Country",
+            "job": "Job",
+            "tel": "Tel",
+            "gsm": "Gsm",
+            "certificat": "Certificat",
+            "expertise": "Expertise",
+            "description": "Description",
+            "website": "Website",
+            "facebook": "Facebook",
+            "google": "Google",
+            "twitter": "Twitter",
+            "paymentFrequency": "PaymentFrequency",
+            "paymentMethod": "PaymentMethod",
+            "paymentAmount": "PaymentAmount",
+            "archived": "Archived",
+            "archivedCause": "ArchivedCause",
+            "activated": "Active",
+            "langKey": "Lang",
+            "roles": "Role"
+        }
+    }
+}

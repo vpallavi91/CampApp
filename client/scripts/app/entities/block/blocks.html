@@ -1,0 +1,204 @@
+<h2><i class="fa fa-building"></i> <span translate="campusApp.block.home.title">blocks</span></h2>
+    <form ng-submit="loadPage(pagination.first)" role="from" class="searchPanel">
+        <div class="row hidden-print">
+          <div class="col-md-6 col-xs-6">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search" ng-model="searchData.keyword">
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                  </span>
+                </div>
+              </div>
+          </div>
+          <div class="col-md-6">
+                <div class="btn-group pull-right">             
+                  <button type="button" class="btn  btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <span translate="entity.action.choose">Select an action</span>
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-inverse">
+                    <li><a data-toggle="modal" data-target="#saveBlockModal" ng-click="clear()"><i class="fa fa-user-plus"></i> <span translate="entity.action.add">add</span></a></li>
+                    <li is-granted="room.create"><a ui-sref="roomMultiple"><i class="fa fa-user-plus"></i>  <span translate="campusApp.room.action.addMultiple">add multiple</span></a></li>
+                    <li class="divider"></li>
+                    <li><a data-toggle="modal" data-target="#customFieldsModal"><i class="fa fa-th"></i> <span translate="entity.action.customFields">customFields</span></a></li>
+                    <li is-granted="block.delete"><a data-toggle="modal" ng-show="showMultipleActions()" data-target="#deleteMultipleConfirmation"><i class="fa fa-times-circle"></i> <span translate="entity.action.delete">delete</span></a></li>
+                  </ul>
+                </div>
+          </div><!-- /.col-lg-2 -->
+        </div><!-- /.row -->
+    </form>
+
+    <table class="table table-hover table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    <label class="checkbox" for="checkbox0">
+                        <input my-checkbox type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)" id="checkbox0" />
+                    </label>
+                </th>
+                    <th ng-repeat="field in fields" ng-class="{'sortable': field.sortable}" ng-show="field.visible" my-sortabale>
+                        <a ng-if="field.sortable" ng-click="changeOrder(field.label)"><span translate="{{ getFieldLabel('block', field) }}">label</span> <i class="fa pull-right" ng-class="{'fa-sort-amount-desc': searchData.orderDir === 'desc', 'fa-sort-amount-asc': searchData.orderDir === 'asc'}"></i></a>
+                        <span ng-if="!field.sortable" translate="{{ getFieldLabel('block', field) }}">label</span>
+                    </th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="entity in blocks" ng-class="{'success': entity.isFree}">
+                <td>
+                    <label class="checkbox" for="checkbox{{entity._id}}">
+                        <input my-checkbox type="checkbox" ng-model="entity.checked" id="checkbox{{entity._id}}">
+                    </label>
+                </td>
+                <td ng-repeat="field in fields" ng-show="field.visible">{{ getFieldValue(entity, field)}}</td>
+                <td>
+                    <button ui-sref="blockDetail({id:entity._id})"
+                            class="btn btn-info  btn-embossed btn-xs">
+                        <i class="fa fa-eye"></i>&nbsp;<span translate="entity.action.view"> View</span>
+                    </button>
+                    <button ng-click="update(entity._id)"
+                            is-granted="block.update"
+                            class="btn btn-primary  btn-embossed btn-xs">
+                        <i class="fa fa-edit"></i>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                    </button>
+                    <button ng-click="delete(entity._id)"
+                            is-granted="block.delete"
+                            class="btn btn-danger  btn-embossed btn-xs">
+                        <i class="fa fa-times-circle"></i>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+        
+    <div class="caption">
+      <em><strong>Total :</strong> {{ blocks.length }}</em>
+    </div>
+
+    <!-- save modal -->
+    <div class="modal fade" id="saveBlockModal">
+        <div class="modal-dialog modal-large">
+            <div class="modal-content">
+                <form name="editForm" role="form" novalidate ng-submit="create()">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" id="myBlockLabel" translate="campusApp.block.home.createOrEditLabel">Create or edit a Block</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label class="control-label">ID</label>
+                          <div class="form-group">
+                              <input type="text" class="form-control" name="id" ng-model="block._id" readonly>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label translate="campusApp.block.name">Name</label>
+                          <div class="form-group">
+                              <input type="text" class="form-control" name="name" ng-model="block.name">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label translate="campusApp.block.floors">Floors</label>
+                          <div class="form-group">
+                              <input type="number" class="form-control" name="floors" ng-model="block.floors">
+                              <div ng-show="editForm.floors.$invalid">
+                                    <p class="help-block" ng-show="editForm.floors.$error.number" translate="entity.validation.number"> 
+                                        This field should be a number.
+                                    </p>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="entity.gender">Type</label>
+                          <div class="form-group">
+                              <select class="form-control select select-primary" my-select="primary" name="gender" ng-model="entity.gender" ng-options="item.value as item.label for item in genderArray">
+                                <option value="" ng-if="entity.gender">Select Type</option>
+                              </select>
+                          </div>
+                        </div>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <i class="fa fa-ban"></i>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-primary">
+                            <i class="fa fa-save"></i>&nbsp;<span translate="entity.action.save">save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+      <!-- delete confirmation modal -->
+    <div class="modal fade" id="deleteBlockConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="confirmDelete(block._id)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p translate="campusApp.block.delete.question" translate-values="{id: '{{block._id}}'}">Are you sure you want to delete this block?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                            <i class="fa fa-times-circle"></i>&nbsp;<span translate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- multiple delete modal -->
+    <div class="modal fade" id="deleteMultipleConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="multipleDelete()">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p translate="campusApp.block.delete.multiplequestion" >Are you sure you want to delete all these blocks?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- custom fields modal -->
+    <div class="modal fade" id="customFieldsModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.action.customFields">customFields</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row" >
+                                <div class="form-group col-md-6" ng-repeat="field in fields">
+                                    <label class="checkbox" for="checkbox{{field.label}}">
+                                        <input my-checkbox type="checkbox" ng-model="field.visible" id="checkbox{{field.label}}"><span translate="{{ getFieldLabel('block', field) }}">label</span>
+                                    </label>
+                                </div>
+                                <div class="clerfix"></div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>

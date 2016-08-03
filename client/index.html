@@ -1,0 +1,209 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Campus</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <base href="/">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- build:css(client) app/vendor.css -->
+          <!-- bower:css -->
+          <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+          <link rel="stylesheet" href="bower_components/flat-ui/dist/css/flat-ui.css" />
+          <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+          <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
+          <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css({.tmp,client}) app/app.css -->
+        <link href="assets/css/main.css" rel="stylesheet" />
+        <link href="assets/css/flat-ui-custom.css" rel="stylesheet" />
+          <!-- injector:css -->
+          <!-- endinjector -->
+        <!-- endbuild -->
+
+    </head>
+    <body ng-app="campusApp" ng-class="{'theme1 app': isAuthenticated() , 'login-screen': !isAuthenticated()}">
+    <style>{{ appConfig.css }}</style>
+        <!--[if lt IE 10]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <header id="adminbar" class="header hidden-print navbar" ng-show="isAuthenticated()" ng-cloak="">
+            <a href="#" id="logo">
+              <img ng-src="{{ appConfig.logo }}" alt="logo" class="img-small" /> <span>{{ appConfig.appName }}</span>
+            </a>
+
+            <div class="dropdown pull-right user-profile">
+                <a href="#" id="drop3" role="button" class="dropdown-toggle"
+                    data-toggle="dropdown"> <img class="img-small"
+                    src="assets/images/user.jpeg" alt="username" /> <span
+                    class="fullname">{{ account.fullName }}</span> <span class="fui-triangle-down-small"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="navbar-content">
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <img src="assets/images/user.jpeg" alt="avatar"
+                                        class="img-responsive" />
+                                    <div class="clearfix"></div>
+                                    <p></p>
+                                </div>
+                                <div class="col-xs-7">
+                                    <span>{{ account.username }}</span>
+                                    <p class="text-muted small">{{ account.email }}</p>
+                                    <div class="divider"></div>
+                                    <span>{{ account.roles | role }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="navbar-footer">
+                            <div class="navbar-footer-content">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <a ui-sref="settings" class="btn btn-default btn-sm" translate="global.menu.entities.settings">settings</a>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <a ui-sref="logout" class="btn btn-default btn-sm pull-right" translate="global.menu.account.logout">logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section class="printHeader text-center visible-print">
+          <h2><img ng-src="{{ appConfig.logo }}" alt="logo" class="img-small" /> {{ appConfig.appName }}</h2>
+          <hr>
+        </section>
+
+        <div ui-view="navbar"  ng-show="isAuthenticated()" ng-cloak=""></div>
+        <section class="wrap">
+            <div class="container"  ng-cloak="">
+                <div class="slide-right" ui-view="content"></div>
+            </div>
+        </section>
+
+        <!--[if lt IE 9]>
+        <script src="bower_components/es5-shim/es5-shim.js"></script>
+        <script src="bower_components/json3/lib/json3.min.js"></script>
+        <![endif]-->
+        <!-- build:js({client,node_modules}) app/vendor.js -->
+          <!-- bower:js -->
+          <script src="bower_components/jquery/dist/jquery.js"></script>
+          <script src="bower_components/angular/angular.js"></script>
+          <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+          <script src="bower_components/angular-resource/angular-resource.js"></script>
+          <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+          <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+          <script src="bower_components/angular-translate/angular-translate.js"></script>
+          <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+          <script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+          <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+          <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+          <script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
+          <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+          <script src="bower_components/flat-ui/dist/js/flat-ui.js"></script>
+          <script src="bower_components/moment/moment.js"></script>
+          <script src="bower_components/angular-moment/angular-moment.js"></script>
+          <script src="bower_components/checklist-model/checklist-model.js"></script>
+          <script src="bower_components/angular-animate/angular-animate.js"></script>
+          <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+          <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:js({.tmp,client}) app/app.js -->
+        <script src="scripts/app/app.js"></script>
+        <script src="scripts/app/app.constants.js"></script>
+
+          <!-- injector:js -->
+          <script src="scripts/app/account/account.js"></script>
+          <script src="scripts/app/account/activate/activate.controller.js"></script>
+          <script src="scripts/app/account/activate/activate.js"></script>
+          <script src="scripts/app/account/login/login.controller.js"></script>
+          <script src="scripts/app/account/login/login.js"></script>
+          <script src="scripts/app/account/logout/logout.controller.js"></script>
+          <script src="scripts/app/account/logout/logout.js"></script>
+          <script src="scripts/app/account/password/password.controller.js"></script>
+          <script src="scripts/app/account/password/password.directive.js"></script>
+          <script src="scripts/app/account/password/password.js"></script>
+          <script src="scripts/app/account/register/register.controller.js"></script>
+          <script src="scripts/app/account/register/register.js"></script>
+          <script src="scripts/app/account/settings/settings.controller.js"></script>
+          <script src="scripts/app/account/settings/settings.js"></script>
+          <script src="scripts/app/app.constants.js"></script>
+          <script src="scripts/app/entities/allocation/allocation-detail.controller.js"></script>
+          <script src="scripts/app/entities/allocation/allocation-save.controller.js"></script>
+          <script src="scripts/app/entities/allocation/allocation.controller.js"></script>
+          <script src="scripts/app/entities/allocation/allocation.js"></script>
+          <script src="scripts/app/entities/block/block-detail.controller.js"></script>
+          <script src="scripts/app/entities/block/block.controller.js"></script>
+          <script src="scripts/app/entities/block/block.js"></script>
+          <script src="scripts/app/entities/category/category-detail.controller.js"></script>
+          <script src="scripts/app/entities/category/category.controller.js"></script>
+          <script src="scripts/app/entities/category/category.js"></script>
+          <script src="scripts/app/entities/config/config-detail.controller.js"></script>
+          <script src="scripts/app/entities/config/config.controller.js"></script>
+          <script src="scripts/app/entities/config/config.js"></script>
+          <script src="scripts/app/entities/entity.js"></script>
+          <script src="scripts/app/entities/person/person-detail.controller.js"></script>
+          <script src="scripts/app/entities/person/person-save.controller.js"></script>
+          <script src="scripts/app/entities/person/person.controller.js"></script>
+          <script src="scripts/app/entities/person/person.js"></script>
+          <script src="scripts/app/entities/product/product-detail.controller.js"></script>
+          <script src="scripts/app/entities/product/product.controller.js"></script>
+          <script src="scripts/app/entities/product/product.js"></script>
+          <script src="scripts/app/entities/reservation/reservation-detail.controller.js"></script>
+          <script src="scripts/app/entities/reservation/reservation-save.controller.js"></script>
+          <script src="scripts/app/entities/reservation/reservation.controller.js"></script>
+          <script src="scripts/app/entities/reservation/reservation.js"></script>
+          <script src="scripts/app/entities/room/room-detail.controller.js"></script>
+          <script src="scripts/app/entities/room/room-multiple.controller.js"></script>
+          <script src="scripts/app/entities/room/room.controller.js"></script>
+          <script src="scripts/app/entities/room/room.js"></script>
+          <script src="scripts/app/entities/user/user-detail.controller.js"></script>
+          <script src="scripts/app/entities/user/user-save.controller.js"></script>
+          <script src="scripts/app/entities/user/user.controller.js"></script>
+          <script src="scripts/app/entities/user/user.js"></script>
+          <script src="scripts/app/error/error.js"></script>
+          <script src="scripts/app/main/main.controller.js"></script>
+          <script src="scripts/app/main/main.js"></script>
+          <script src="scripts/components/auth/auth.service.js"></script>
+          <script src="scripts/components/auth/authInterceptor.service.js"></script>
+          <script src="scripts/components/auth/authority.directive.js"></script>
+          <script src="scripts/components/auth/principal.service.js"></script>
+          <script src="scripts/components/auth/provider/auth.session.service.js"></script>
+          <script src="scripts/components/entities/allocation/allocation.service.js"></script>
+          <script src="scripts/components/entities/block/block.service.js"></script>
+          <script src="scripts/components/entities/category/category.service.js"></script>
+          <script src="scripts/components/entities/config/config.service.js"></script>
+          <script src="scripts/components/entities/person/person.service.js"></script>
+          <script src="scripts/components/entities/product/product.service.js"></script>
+          <script src="scripts/components/entities/reservation/reservation.service.js"></script>
+          <script src="scripts/components/entities/room/room.service.js"></script>
+          <script src="scripts/components/entities/user/user.service.js"></script>
+          <script src="scripts/components/form/form.directive.js"></script>
+          <script src="scripts/components/form/pager.directive.js"></script>
+          <script src="scripts/components/form/pagination.directive.js"></script>
+          <script src="scripts/components/language/language.controller.js"></script>
+          <script src="scripts/components/language/language.service.js"></script>
+          <script src="scripts/components/navbar/navbar.controller.js"></script>
+          <script src="scripts/components/navbar/navbar.directive.js"></script>
+          <script src="scripts/components/util/base64.service.js"></script>
+          <script src="scripts/components/util/fields.service.js"></script>
+          <script src="scripts/components/util/parse-links.service.js"></script>
+          <script src="scripts/components/util/truncate.filter.js"></script>
+          <script src="scripts/components/util/util.directive.js"></script>
+          <script src="scripts/components/util/util.filter.js"></script>
+          <script src="scripts/components/util/util.service.js"></script>
+          <!-- endinjector -->
+
+        <!-- endbuild -->
+
+</body>
+</html>

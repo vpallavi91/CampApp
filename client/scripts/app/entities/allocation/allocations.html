@@ -1,0 +1,198 @@
+<h2><i class="fa fa-archive"></i> <span translate="campusApp.allocation.home.title">Allocations</span></h2>
+    <form ng-submit="loadPage(pagination.first)" role="from" class="searchPanel">
+        <div class="row hidden-print">
+          <div class="col-md-6">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search" ng-model="searchData.keyword">
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                  </span>
+                </div>
+              </div>
+          </div>
+          <div class="col-md-6">
+                <div class="btn-group pull-right">             
+                  <button type="button" class="btn  btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <span >Select an action</span>
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-inverse">
+                    <li><a data-toggle="modal" data-target="#customFieldsModal"><i class="fa fa-th"></i> <span >customFields</span></a></li>
+                    <li is-granted="allocation.delete"><a data-toggle="modal" ng-show="showMultipleActions()" data-target="#deleteMultipleConfirmation"><i class="fa fa-times-circle"></i> <span translate="entity.action.delete">delete</span></a></li>
+                  </ul>
+                </div>
+          </div><!-- /.col-lg-2 -->
+        </div><!-- /.row -->
+  </form>
+
+    <div class="modal fade" id="saveAllocationModal" tabindex="-1" role="dialog" aria-labelledby="myAllocationLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="editForm" role="form" novalidate ng-submit="create()">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;jhjhj</button>
+                        <h4 class="modal-title" id="myAllocationLabel" translate="campusApp.allocation.home.createOrEditLabel">Create or edit a Allocation</h4>
+                    </div>
+                    <div class="modal-body">
+                       
+
+                        <label translate="campusApp.allocation.person">person</label>
+                          <div class="form-group">
+                              <select class="form-control select select-primary select2-offscreen" my-select="primary" class="form-control" name="person" ng-model="allocation.person"  ng-options="person._id as person.fullName for person in persons">
+                                <option value="" >Select a Person ( all )</option>
+                              </select>
+                            </div>
+                        <label translate="campusApp.allocation.product">product</label>
+                          <div class="form-group">
+                            <input ng-show="!productnotfilled" type="hidden" class="form-control" name="id"
+                                   ng-model="allocation.product" >
+                               <input ng-show="!productnotfilled" type="text" class="form-control" name="id"
+                                   ng-model="product.name" readonly>
+
+                              <select class="form-control select select-primary select2-offscreen" ng_show="productnotfilled" my-select="primary" class="form-control" name="product" ng-model="allocation.product"  ng-options="product._id as product.name for product in products | filter:{isalloced:false}">
+                                <option value="" >Select a Product ( all )</option>
+                              </select>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="fa fa-ban"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+                            <span class="fa fa-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        <label class="checkbox" for="checkbox0">
+                            <input my-checkbox type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)" id="checkbox0" />
+                        </label>
+                    </th>
+                    <th ng-repeat="field in fields" ng-class="{'sortable': field.sortable}" ng-show="field.visible" my-sortabale>
+                        <a ng-if="field.sortable" ng-click="changeOrder(field.label)"><span translate="{{ getFieldLabel('allocation', field) }}">label</span> <i class="fa pull-right" ng-class="{'fa-sort-amount-desc': searchData.orderDir === 'desc', 'fa-sort-amount-asc': searchData.orderDir === 'asc'}"></i></a>
+                        <span ng-if="!field.sortable" translate="{{ getFieldLabel('allocation', field) }}">label</span>
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="entity in allocations">
+                    <td>
+                        <label class="checkbox" for="checkbox{{entity._id}}">
+                            <input my-checkbox type="checkbox" ng-model="entity.checked" id="checkbox{{entity._id}}">
+                        </label>
+                    </td>
+                    <td ng-repeat="field in fields" ng-show="field.visible">{{ getFieldValue(entity, field)}}</td>
+                    <td>
+                        <button ui-sref="allocationDetail({id:entity._id})"
+                                class="btn btn-info  btn-embossed btn-xs">
+                            <i class="fa fa-eye"></i>&nbsp;<span translate="entity.action.view"> View</span>
+                        </button>
+                        <button ng-click="update(entity._id)"
+                                is-granted="allocation.update"
+                                class="btn btn-primary  btn-embossed btn-xs">
+                            <i class="fa fa-edit"></i>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </button>
+                        <button ng-click="delete(entity._id)"
+                                is-granted="allocation.delete"
+                                class="btn btn-danger  btn-embossed btn-xs">
+                            <i class="fa fa-times-circle"></i>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="caption">
+          <em><strong>Total :</strong> {{ count }}</em>
+        </div>
+
+        <nav>
+            <ul class="pager" >
+                <li ng-show="pagination.first" ng-click="loadPage(pagination.first)"><a>&lt;&lt;</a></li>
+                <li ng-show="pagination.prev" ng-click="loadPage(pagination.prev)"><a>&lt;</a></li>
+                <li ng-show="pagination.next" ng-click="loadPage(pagination.next)"><a>&gt;</a></li>
+                <li ng-show="pagination.last" ng-click="loadPage(pagination.last)"><a>&gt;&gt;</a></li>
+            </ul>
+        </nav>
+
+    <!-- delete confirmation modal -->
+    <div class="modal fade" id="deleteAllocationConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="confirmDelete(allocation._id,allocation)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p translate="campusApp.allocation.delete.question" translate-values="{id: '{{allocation._id}}'}">Are you sure you want to delete this Allocation?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="fa fa-ban"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                            <span class="fa fa-times-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- multiple delete modal -->
+    <div class="modal fade" id="deleteMultipleConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="multipleDelete()">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.delete.title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p >Are you sure you want to delete all these allhihihiocations?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- custom fields modal -->
+    <div class="modal fade" id="customFieldsModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" translate="entity.action.customFields">customFields</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row" >
+                                <div class="form-group col-md-6" ng-repeat="field in fields">
+                                    <label class="checkbox" for="checkbox{{field.label}}">
+                                        <input my-checkbox type="checkbox" ng-model="field.visible" id="checkbox{{field.label}}"><span translate="{{ getFieldLabel('allocation', field) }}">label</span>
+                                    </label>
+                                </div>
+                                <div class="clerfix"></div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>

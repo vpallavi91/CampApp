@@ -1,0 +1,27 @@
+{
+    "campusApp": {
+        "product" : {
+            "home": {
+                "title": "products",
+                "createLabel": "Create a new product",
+                "lib":"product",
+                "createOrEditLabel": "Create or edit a product"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete product ?",
+                "multiplequestion": "Are you sure you want to delete all these  Products ?"
+                
+            },
+            "detail": {
+                "title": "product"
+            },
+            
+            "name": "Name",
+            "type": "Type",
+            "quantity":"quantity",
+            "category":"category",
+            "available":"available"
+        }
+    }
+}
+

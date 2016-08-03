@@ -1,0 +1,38 @@
+services{
+	"Auth": { 
+		"login": "check credentials in order to authenticate a user -> AuthServerProvider",
+		"logout": "logout -> AuthServerProvider",
+		"authorize": "check user roles -> Principal",
+		"createAccount": "create a new account -> Register resource",
+		"updateAccount": "update an account -> Account resource",
+		"activateAccount": "actiate an account -> Activate resource",
+		"changePassword": "change user's password -> Password resource"
+	},
+	"AuthServerProvider": {
+		"login": "$http.post -> api/authentication",
+		"logout": "$http.post -> api/logout",
+		"getToken": "get token from localStorageService",
+		"hasValidToken": "check token"
+	},
+	"Principal": {
+		"isIdentityResolved": "check if the user identity is not null",
+		"isAuthenticated": "check if a user has already loged in",
+		"isInRole": "check if a user has a specific role",
+		"isInAnyRole": "check if a user has a one off certain roles",
+		"authenticate": "init the user identity",
+		"identity": "retrieve the identity data from the server",
+	},
+	"Account": "$resource -> api/account",
+	"Activate": "$resource -> api/activate",
+	"Password": "$resource -> api/account/change_password",
+	"Register": "$resource -> api/register",
+	"Language": "getCurrent, getAll",
+
+	"User": "$resource -> api/users/:id",
+	"UserPassword": "$resource -> api/users/change_password",
+	"UserActivate": "$resource -> api/users/activate/:activated/:ids"
+
+
+
+
+}

@@ -1,0 +1,49 @@
+<h2><i class="fa fa-hotel"></i> <span translate="campusApp.room.detail.title">Room</span> {{room.name}}</h2>
+<div class="row">
+    <div class="col-md-9">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td><span translate="campusApp.room.name">name</span></td>
+                    <td>{{room.name}}</td>
+                </tr>
+                <tr>
+                    <td><span translate="campusApp.room.floor">floor</span></td>
+                    <td>{{room.floor}}</td>
+                </tr>
+                <tr>
+                    <td><span translate="campusApp.room.capacity">capacity</span></td>
+                    <td>{{room.capacity}}</td>
+                </tr>
+                <tr>
+                    <td><span translate="campusApp.room.free">free</span></td>
+                    <td>{{room.free}}</td>
+                </tr>
+                <tr>
+                    <td><span translate="campusApp.block.type">type</span></td>
+                    <td>{{room.block.type | genderConversion}}</td>
+                </tr>
+                <tr>
+                    <td><span translate="campusApp.block.detail.title">block</span></td>
+                    <td><a ui-sref="blockDetail({id:room.block._id})"> {{room.block.name}}</a></td>
+
+                </tr>
+                <tr ng-show="room.reservations">
+                    <td><span translate="campusApp.person.home.title">persons</span></td>
+                    <td>
+                        <ul class="list-unstyled">
+                            <li ng-repeat="reservation in room.reservations">{{ reservation.person.firstName }} </li>
+                            <li ng-show="!room.reservations.length">No persons</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3">
+        <button type="button" ui-sref="room" class="btn btn-info btn-block">
+            <span class="fa fa-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Revenir vers la liste</span>
+        </button>
+        <button my-printer type="button" class="btn btn-primary btn-block"><span class="fa fa-print"></span> Imprimer</button>
+    </div>
+</div>

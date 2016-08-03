@@ -1,0 +1,94 @@
+<form class="form-horizontal" method="POST" ng-submit="save()">
+<h2><i class="fa fa-gears"></i> <span translate="global.menu.entities.settings">Settings</span></h2>
+
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-target="#tab1" data-toggle="tab"><i class="fa fa-tab"></i> General</a></li>
+        <li><a data-target="#tab2" data-toggle="tab"><i class="fa fa-tab"></i> Settings</a></li>
+        <li><a data-target="#tab3" data-toggle="tab"><i class="fa fa-tab"></i> Theme</a></li>
+    </ul>
+    <!-- /tabs -->
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+            <div class="form-group">
+                <label for="" class="col-sm-4 control-label">Logo</label>
+                <div class="col-sm-4">
+                    <img class="myavatar col-md-4" ng-src="{{ entity.logo }}">
+                </div>
+            </div>  
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-4">
+                    <input type="file" name="logo" onchange="angular.element(this).scope().setFile(this)"  accept="image/png,image/jpg,image/jpeg">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-4 control-label">Application name</label>
+                <div class="col-sm-4">
+                    <input type="text" name="appName" ng-model="entity.appName" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-4 control-label">address</label>
+                <div class="col-sm-4">
+                    <input type="text" name="address" ng-model="entity.address" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-4 control-label">city</label>
+                <div class="col-sm-4">
+                    <input type="text" name="city" ng-model="entity.city" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-4 control-label">tel</label>
+                <div class="col-sm-4">
+                    <input type="text" name="tel" ng-model="entity.tel" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-4 control-label">gsm</label>
+                <div class="col-sm-4">
+                    <input type="text" name="gsm" ng-model="entity.gsm" class="form-control">
+                </div>
+            </div>
+        </div>
+        <!-- /tab1 -->
+        <div class="tab-pane" id="tab2">
+            <div class="form-group">
+                <label for="" class="col-sm-4 control-label">perpage</label>
+                <div class="col-sm-4">
+                    <input type="text" name="perPage" ng-model="entity.perPage" class="form-control">
+                </div>
+            </div>
+        </div>
+        <!-- /tab1 -->
+        <div class="tab-pane" id="tab3">
+            <div class="form-group">
+                <label for="" class="col-sm-4 control-label">Theme</label>
+                <div class="col-sm-4">
+                    <select class="form-control select select-primary" my-select="primary" name="theme" ng-model="entity.theme">
+                        <option value="theme1">theme 1</option>
+                        <option value="theme1">theme 2</option>
+                        <option value="theme1">theme 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-4 control-label">css</label>
+                <div class="col-sm-6">
+                  <textarea name="appCss" ng-model="entity.css" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+        <!-- /tab1 -->
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-4">
+            <button type="submit" name="subvalider" ng-disabled="personFrom.$invalid" class="btn btn-primary btn-embossed">
+                <i class="fa fa-save"></i>&nbsp;<span translate="entity.action.save">Save</span>
+            </button>
+        </div>
+    </div>
+</div>
+</form>

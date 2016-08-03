@@ -1,0 +1,47 @@
+<h2><i class="fa fa-hotel"></i> <span translate="campusApp.reservation.detail.title">Reservation</span> {{reservation.name}}</h2>
+<div class="row">
+    <div class="col-md-9">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td><span translate="campusApp.person.home.title">person</span></td>
+                    <td><a ui-sref="personDetail({id:reservation.person._id})"> {{reservation.person.fullName}}</a></td>
+                </tr>
+                <tr>
+                    <td><span translate="campusApp.room.detail.title">room</span></td>
+                    <td><a ui-sref="roomDetail({id:reservation.room._id})"> {{reservation.room.name}}</a></td>
+                </tr>
+                <tr>
+                    <td><span translate="campusApp.block.detail.title">block</span></td>
+                    <td><a ui-sref="blockDetail({id:reservation.room.block._id})"> {{reservation.room.block.name}}</a></td>
+                </tr>
+                <tr>
+                    <td><span translate="campusApp.reservation.datePayement">DatePayement</span></td>
+                    <td>{{reservation.datePayement | amDateFormat:'DD-MM-YYYY'}}</td>
+                </tr>
+                <tr>
+                    <td><span translate="campusApp.reservation.dateFrom">DateFrom</span></td>
+                    <td>{{reservation.dateFrom | amDateFormat:'DD-MM-YYYY'}}</td>
+                </tr>
+                <tr>
+                    <td><span translate="campusApp.reservation.dateTo">DateTo</span></td>
+                    <td>{{reservation.dateTo | amDateFormat:'DD-MM-YYYY'}}</td>
+                </tr>
+                <tr>
+                    <td><span translate="campusApp.reservation.status">Status</span></td>
+                    <td>{{reservation.status}}</td>
+                </tr>
+                <tr>
+                    <td><span translate="campusApp.reservation.price">Price</span></td>
+                    <td>{{reservation.price}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3">
+        <button type="button" ui-sref="reservation" class="btn btn-info btn-block">
+            <span class="fa fa-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Revenir vers la liste</span>
+        </button>
+        <button my-printer type="button" class="btn btn-primary btn-block"><span class="fa fa-print"></span> Imprimer</button>
+    </div>
+</div>

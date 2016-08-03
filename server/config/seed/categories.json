@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "5590c04e85a2e84c1114e556",
+    "name": "category 1",
+    "__v": 0,
+    "products": []
+  },
+  {
+    "_id": "5590c05285a2e84c1114e557",
+    "name": "category 2",
+    "__v": 0,
+    "products": []
+  },
+  {
+    "_id": "5590c05585a2e84c1114e558",
+    "name": "category 3",
+    "__v": 0,
+    "products": []
+  }
+]

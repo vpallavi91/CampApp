@@ -1,0 +1,44 @@
+[
+	{
+	    "provider": "local",
+	    "role": "admin",
+	    "firstName": "Pallavi",
+	    "lastName": "Vijayakumar",
+	    "username": "admin",
+	    "email": "admin@admin.com",
+	    "password": "admin",
+	    "roles":  [
+	    	"main",
+	    	"user.show", "user.create", "user.update", "user.delete",
+	    	"person.show", "person.create", "person.update", "person.delete",
+	    	"room.show", "room.create", "room.update", "room.delete",
+	    	"block.show", "block.create", "block.update", "block.delete",
+	    	"product.show", "product.create", "product.update", "product.delete",
+	    	"reservation.show", "reservation.create", "reservation.update", "reservation.delete",
+	    	"allocation.show", "allocation.create", "allocation.update", "allocation.delete",
+	    	"config.show", "config.create", "config.update", "config.delete","category.show","category.create",
+	    	"category.update" , "category.delete"
+	    ],
+	    "activated": true
+	},
+	{
+	    "provider": "local",
+	    "firstName": "test",
+	    "lastName": "user",
+	    "username": "user",
+	    "email": "user@user.com",
+	    "password": "user",
+	    "roles": [
+	    	"main",
+	    	"user.show",
+	    	"person.show",
+	    	"room.show",
+	    	"block.show",
+	    	"product.show",
+	    	"reservation.show",
+	    	"allocation.show",
+	    	"config.show"
+	    ],
+	    "activated": true
+	}
+]

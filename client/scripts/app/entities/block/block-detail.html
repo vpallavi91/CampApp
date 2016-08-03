@@ -1,0 +1,48 @@
+
+<div>
+    <h2><i class="fa fa-building"></i> <span translate="campusApp.block.detail.title">Block</span> {{block.name}}</h2>
+
+    <div class="row">
+        <div class="col-md-9">
+            <table class="table table-bordered">
+                <tr>
+                    <th class="col-md-2">Nom du pavillon</th>
+                    <td>{{ block.name }}</td>
+                </tr>
+                <tr>
+                    <th>Number of floors</th>
+                    <td>{{ block.floors }}</td>
+                </tr>
+                <tr>
+                    <th>Type</th>
+                    <td>{{ block.type | genderConversion }}</td>
+                </tr>
+                <tr>
+                    <th>Number of rooms</th>
+                    <td>{{ block.count }}</td>
+                </tr>
+                <tr class="hide-print">
+                    <th>List of rooms</th>
+                    <td class="room-widget">
+                        <div class="well" ng-repeat="floor in dataRooms">
+                            <span class="label label-warning">Floor no. {{ floor.number}}</span>
+                            <div ng-repeat="room in floor.rooms" class="col-md-2">
+                                <button ui-sref="roomDetail({id:room._id})" class="btn btn-block" ng-class="{'btn-success': room.isFree, 'btn-default': !room.isFree}">{{ room.name }} </button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-md-3">
+            <button type="button" ui-sref="block" class="btn btn-info btn-block">
+                <span class="fa fa-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Revenir vers la liste</span>
+            </button>
+            <button my-printer type="button" class="btn btn-primary btn-block"><span class="fa fa-print"></span> Imprimer</button>
+        </div>
+    </div>
+
+
+</div>
