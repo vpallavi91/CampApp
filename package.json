@@ -20,7 +20,7 @@
   "scripts": {
     "start": "node server/app.js",
     "test": "grunt test",
-    "postinstall": "grunt build",
+    "postinstall": "bower install && grunt build && grunt serve",
     "update-webdriver": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
   },
   "dependencies": {
