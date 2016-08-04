@@ -43,9 +43,7 @@
     "multer": "^1.0.1",
     "passport": "~0.2.0",
     "passport-local": "~0.1.6",
-    "serve-favicon": "~2.0.1"
-  },
-  "devDependencies": {
+    "serve-favicon": "~2.0.1",
     "grunt": "~0.4.4",
     "grunt-autoprefixer": "~0.7.2",
     "grunt-wiredep": "~1.8.0",
