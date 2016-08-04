@@ -1,0 +1,17 @@
+node_modules
+public
+.tmp
+.idea
+client/bower_components
+dist
+/server/config/local.env.js
+*.log
+
+*Thumbs.db
+client/upload/img/*
+client/upload/img/logo.png
+
+
+*.sublime-project
+*.sublime-workspace
+
